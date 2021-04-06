@@ -19,11 +19,11 @@ gender varchar(10), level varchar(10))
 """)
 
 song_table_create = ("""
-CREATE TABLE IF NOT EXISTS songs (song_id varchar(40), title varchar(70), artist_id varchar(30) , year REAL, duration REAL)
+CREATE TABLE IF NOT EXISTS songs (song_id varchar(40), title varchar(70), artist_id varchar, year REAL, duration float)
 """)
 
 artist_table_create = ("""
-CREATE TABLE IF NOT EXISTS artists (artist_id varchar(50), name varchar(120), location varchar(50), 
+CREATE TABLE IF NOT EXISTS artists (artist_id varchar, name varchar(120), location varchar(50), 
 latitude numeric, longitude numeric)
 """)
 
