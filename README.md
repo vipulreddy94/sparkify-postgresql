@@ -1,2 +1,0 @@
-# udemy sparkify postgresql
- 
