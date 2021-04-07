@@ -8,7 +8,7 @@ Python is used to create a postgresql and also to create ETL pipelines to insert
 
 Steps to execute the project. 
 
-1. install and run the postgres docker image.
+1. install and run the postgres docker image and make sure the  correct DB name, user name and pwd name are used in the scripts below.
 2. Run the sql_queries.py file, to assign appropriate SQL Queries to variables and lists. 
 3. Run create_tables.py file, to connect to the DB created and create the tables.
 4. Run etl.py script, to process the data available in data folder make appropriate insertions. This script, is used to create a ETL pipeline - which Extracts data from log files and song files (json files in data folder) and then Transform the data according to requirements and Loads the data into the database tables. 
