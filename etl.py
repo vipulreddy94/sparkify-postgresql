@@ -7,6 +7,11 @@ from sql_queries import *
 
 
 def process_song_file(cur, filepath):
+    """
+    - Accepts the cursor object and each file from the song_file folder, processes it.
+    - Inserts into song and artist table are executed from the processed data.
+    - cursor is comitted after the function call.
+    """
     # open song file
     df = pd.DataFrame(json.load(open(filepath)), index = [0])
 
@@ -20,6 +25,11 @@ def process_song_file(cur, filepath):
 
 
 def process_log_file(cur, filepath):
+    """
+    - Accepts the cursor object and each file from the log_file folder, processes it.
+    - Inserts into user, time and songplays table are executed from the processed data.
+    - cursor is comitted after the function call.
+    """
     # open log file
     df = pd.read_json(filepath,lines=True)
 
@@ -54,8 +64,7 @@ def process_log_file(cur, filepath):
     # load user table
     user_df = df.loc[:,['userId','firstName','lastName','gender','level']]
     user_df = user_df.drop_duplicates()
-    #user_df = user_df.loc[user_df['userId']!="",:]
-
+   
     # insert user records
     for i, row in user_df.iterrows():
         cur.execute(user_table_insert, row)
@@ -78,6 +87,12 @@ def process_log_file(cur, filepath):
 
 
 def process_data(cur, conn, filepath, func):
+    """
+    - Accepts cursor and connection objects,file path and the function to be used to process the files in that path. 
+    - all the files in the file path are iterated and stored in a list. 
+    - each file is passed onto the func along with cursor obejct. 
+    - Processing of data and inserts are made in the passed func, but commits are done here. 
+    """
     # get all files matching extension from directory
     all_files = []
     for root, dirs, files in os.walk(filepath):
@@ -97,6 +112,8 @@ def process_data(cur, conn, filepath, func):
 
 
 def main():
+    """
+    """
     conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
     cur = conn.cursor()
 
